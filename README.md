@@ -1,3 +1,2 @@
-Competative programming codes 
-by **ltunjic**
+my cp codes repo
 https://codeforces.com/profile/ltunjic
