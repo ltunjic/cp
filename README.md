@@ -1,3 +1,3 @@
 Competative programming codes 
-by **ltunjic**\n
+by **ltunjic**
 https://codeforces.com/profile/ltunjic
