@@ -1,2 +1,3 @@
-# cp
-Competative programming codes - by ltunjic
+Competative programming codes 
+by **ltunjic**
+https://codeforces.com/profile/ltunjic
