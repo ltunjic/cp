@@ -11,7 +11,7 @@ using namespace std;
 const int N = 110;
 const int M = 1e5 + 10;
 const int out[2][2] = {{2,1}, 
-					   {3,4}}; 
+		       {3,4}}; 
 int n, m, cnt;
 int mat[N][N], hor[N][N], ver[N][N];
 int sol[M], bio[M], comp[M];
