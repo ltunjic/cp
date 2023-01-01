@@ -20,8 +20,6 @@ int tour[OFF << 1];
 ll cnt = 0, gr[OFF];
 map<ll, ll> mp[OFF];
 
-vector<ll> v;
-
 int merge(int a, int b){
 	if(B[a] > B[b]) return a;
 	return b;
@@ -93,11 +91,7 @@ int main(){
 	scanf("%d", &n);
 	for(int i = 0; i < n; i++){
 		scanf("%d", A + i);
-		v.pb(A[i]);
 	}	
-	
-	sort(v.begin(), v.end());
-	
 	for(int i = 0; i < n; i++){
 		scanf("%d", B + i);
 		update(i, i);	
