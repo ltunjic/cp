@@ -30,11 +30,6 @@ int n, m;
 vector<pii> g[N]; 
 vector<point> ch[N], cur; 
 
-// void debug(vector<point> &v) {
-// 	for(point p : v) printf("(%lld, %lld) ", p.x, p.y);
-// 	printf("\n"); 
-// }
-
 void construct() { 
 	ch[1].pb(point()); 
 	for(int u = 2; u <= n; u++) {
@@ -49,14 +44,11 @@ void construct() {
 			}
 		}
 		sort(cur.begin(), cur.end()); 
-		//if(u == 5) debug(cur);
 		for(point p : cur) {
-			//if(u == 5 && p.x == 2) printf("%d\n", ccw(ch[u].end()[-2], p, ch[u].end()[-1]));
 			while((int) ch[u].size() >= 2 && ccw(ch[u].end()[-2], p, ch[u].end()[-1])) 
 				ch[u].erase(ch[u].end() - 1); 
 			ch[u].pb(p); 
 		}
-		//debug(ch[u]);
 	}
 }
 
