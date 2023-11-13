@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# koristi kao "$ comp ime_programa"
+# kompajlira ime_programa.cpp u ime_programa
+# da bude komanda, dodaj u /bin/
+	
+g++ -std=c++17 -O2 $1.cpp -o $1 -Wno-unused-result
