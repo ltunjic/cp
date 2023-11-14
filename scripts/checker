@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# koristiti kao "$ checker ime_zadatka", npr "$ checker aliens"
+# potrebno je imati "ime_zadatka.cpp" kao i "ime_zadatka_tests" folder
+
+# u "ime_zadatka_tests" potrebno je imati sve test primjere
+# te svaki test primjer mora imati dva odgovarajacu file-a, input i output
+# npr, "xyz.in" i "xyz.out"
+
+# pri potrebi za koristenjem kao komanda, dodati u /usr/bin/ folder
+
+arg=$1
+path="$arg"_tests
+
+comp $arg
+
+if [[ $? ]]; then
+	echo "$arg.cpp successfully compiled"
+else
+	echo "$arg.cpp failed during compilation"
+fi
+
+wa=0
+cnt=0
+
+echo "program failed on following tests:"
+
+for i in "$path"/*.in; do
+	if [ -f $i ]; then
+		j=${i/in/out}
+		./$arg < $i > temp_file
+
+		cmp -s temp_file $j
+
+		tmp=$? 
+		if [ $tmp -eq 1 ]; then
+			tmp2=${i/$path\//}
+			echo "$tmp2" 
+		fi
+
+		wa=$(( $wa + $tmp ))
+		cnt=$(( $cnt + 1 ))
+	fi
+done
+
+echo "$(( $cnt - $wa )) / $cnt successful runs"
+
+rm temp_file
