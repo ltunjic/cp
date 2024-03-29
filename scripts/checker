@@ -7,7 +7,7 @@
 # te svaki test primjer mora imati dva odgovarajaca file-a, input i output
 # npr, "xyz.in" i "xyz.out"
 
-# pri potrebi za koristenjem kao komanda, dodati u /bin/ folder
+# pri potrebi za koristenjem kao komanda, dodati u /usr/bin/ folder
 
 arg=$1
 path="$arg"_tests
@@ -50,11 +50,11 @@ for i in "$path"/*.in*; do
 	fi
 done
 
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "$(( $cnt - $wa )) / $cnt successful runs"
 
 if [ $flag -eq 1 ]; then
-	echo "$remb"
+	echo "First wrong output on test case: $remb"
 fi
 
 rm temp_file
-
