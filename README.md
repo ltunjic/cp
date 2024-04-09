@@ -2,7 +2,7 @@ https://codeforces.com/profile/ltunjic
 
 //////////////////////////////////////
 
-.vimrc setup:
+**.vimrc** :
 ```vim
 syntax enable
 filetype on
