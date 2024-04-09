@@ -1,5 +1,7 @@
 https://codeforces.com/profile/ltunjic
+
 //////////////////////////////////////
+
 .vimrc setup:
 ```vim
 syntax enable
