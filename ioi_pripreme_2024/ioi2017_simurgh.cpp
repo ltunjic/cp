@@ -1,5 +1,3 @@
-// count_common_road(vector<int>)
-// find_road()
 #include "simurgh.h"
 #include <cstring>
 #include <cstdio>
@@ -18,15 +16,12 @@ typedef pair<int, int> pii;
 
 const int N = 510;
 const int M = N * N;
-const int DEB = 0;
 
 int n, m, uu[M], vv[M];
 vector<pii> g[N];
 
 bool isb[M];
 vector<pii> mst;
-
-// XXXXXXXXXXXXXXXXXXXXXXXXX
 
 int dep[N], mind[N]; // memset(dep)
 
@@ -38,7 +33,6 @@ int dfstree(int u, int p, int pi) {
 		if(v != p) { 
 			if(dep[v] == -1) { 
 				dep[v] = dep[u] + 1;
-				if(DEB) printf("%d(%d) -> %d(%d)\n", u, dep[u], v, dep[v]);
 				mind[u] = min(mind[u], dfstree(v, u, i));
 			} else if( dep[v] < dep[u]) { 
 				mind[u] = min(mind[u], dep[v]);
@@ -58,11 +52,7 @@ void bridge() {
 	memset(dep, -1, sizeof(dep));
 	dep[0] = 0;
 	dfstree(0, -1, -1);
-
-	if(DEB) printf("mostovi:\n"); for(pii i : mst) { if(DEB) printf("%d (%d %d)\n", i.X, uu[i.X], vv[i.X]); } if(DEB) printf("~~~\n");
 }
-
-// XXXXXXXXXXXXXXXXXXXXXXXXX
 
 int un[N], siz[N];
 
@@ -84,8 +74,6 @@ bool unija(int u, int v) {
 	siz[u] += siz[v];
 	return 1;
 }
-
-// XXXXXXXXXXXXXXXXXXXXXXXXX
 
 vector<int> qry;
 
@@ -116,8 +104,6 @@ int fillup(vector<int> &e, bool f) {
 	return ret;
 }
 
-// XXXXXXXXXXXXXXXXXXXXXXXXX
-
 int bio[N], bioe[M], val[M];
 vector<int> tmp, cp, pth;
 
@@ -141,7 +127,6 @@ bool dfs(int u) {
 	tried[u] = 1;
 	for(pii e : g[u]) { 
 		int v = e.X, i = e.Y;
-//		printf("%d %d %d (isb %d bioe %d bio %d)\n", u, i, v, isb[i], bioe[i], bio[i]);
 		if(!isb[i] && !bioe[i] && bio[v] != 1 && !tried[v]) { 
 			tmp.PB(i);
 			bioe[i] = 1;
@@ -205,9 +190,6 @@ void cycle(vector<int> &e) {
 	vector<pii> res;
 	for(int i = 0; i < e.size(); ++i) { 
 		vector<int> fu;
-//		for(pii j : mst) { 
-//			fu.PB(j.X);
-//		}
 		for(int j : pth) {
 			fu.PB(j);
 		}
@@ -227,10 +209,6 @@ void cycle(vector<int> &e) {
 		val[res[i].X] = xam - res[i].Y;
 	}
 	bioe[res.back().X] = 0;
-
-	if(DEB) for(int i = (int) mst.size() - 1, j = 0; j < (int) e.size() - 1; ++j, --i) {
-		printf("%d, %d (%d %d)\n", mst[i].X, mst[i].Y, uu[mst[i].X], vv[mst[i].X]);
-	}
 }
 
 void ear() {
@@ -240,9 +218,6 @@ void ear() {
 		if(bio[i] == -1) { 
 			cp.clear();
 			comp(i);
-
-			if(DEB) printf("component (pivot %d):\n", i); for(int j : cp) { if(DEB) printf("%d ", j); } if(DEB) printf("\n");
-
 			bio[i] = 2;
 
 			for(int j : cp) { 
@@ -253,9 +228,6 @@ void ear() {
 					memset(tried, 0, sizeof(tried));
 					sp = 1; dfs(j);
 					
-					if(DEB) printf("pivot %d (anc %d %d): ", j, spec[0], spec[1]); 
-					for(int k : tmp) { if(DEB) printf("%d ", k); } if(DEB) printf("\n");
-
 					cycle(tmp);
 
 					for(int k : tmp) { 
@@ -264,12 +236,9 @@ void ear() {
 					}
 				}
 			}
-			if(DEB) printf("~~~\n");
 		}
 	}
 }
-
-// XXXXXXXXXXXXXXXXXXXXXXXXX
 
 bool ans[M];
 int deg[N], cnt = 0;
@@ -325,11 +294,7 @@ vector<int> find_roads(int nn, vector<int> A, vector<int> B) {
 		}
 	
 		deg[i] = query(q);
-
-		if(DEB) printf("%d %d\n", i, deg[i]);
 	}
-	
-	if(DEB) printf("~~~\n");
 
 	for(; cnt < n - 1; ) { 
 		for(int i = 0; i < n; ++i) { 
@@ -339,7 +304,6 @@ vector<int> find_roads(int nn, vector<int> A, vector<int> B) {
 				ans[ind] = 1;
 				--deg[uu[ind]];
 				--deg[vv[ind]];
-				if(DEB) printf("%d, %d(%d) %d(%d)\n", i, uu[ind], deg[uu[ind]], vv[ind], deg[vv[ind]]);
 			}
 		}
 	}
