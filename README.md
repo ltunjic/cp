@@ -18,5 +18,4 @@ set noswapfile
 set smartcase
 set showmatch
 set so=999
-set clipboard=unnamed
 ```
