@@ -14,4 +14,9 @@ set autoindent
 set background=dark
 set guifont=Ubuntu\ Mono\ 11
 set noswapfile
+
+set smartcase
+set showmatch
+set so=999
+set clipboard=unnamed
 ```
