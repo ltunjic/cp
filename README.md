@@ -11,7 +11,6 @@ set shiftwidth=4
 set nowrap
 set nu
 set autoindent
-
 set noswapfile
 
 set smartcase
